@@ -1,4 +1,4 @@
-﻿@model Insure.Web.Models.CompanyPolicy
+﻿@model Insure.Web.Models.Company
 
 @{
     ViewBag.Title = "Details";
@@ -7,23 +7,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>CompanyPolicy</h4>
+    <h4>Company</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PolicyId)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PolicyId)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InsuranceCompanyId)
+            @Html.DisplayNameFor(model => model.Website)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InsuranceCompanyId)
+            @Html.DisplayFor(model => model.Website)
         </dd>
 
     </dl>

@@ -24,10 +24,10 @@ namespace Insure.Web.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public DbSet<Person> People { get; set; }
-        public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
-        public DbSet<Policy> Policies { get; set; }
-        public DbSet<CompanyPolicy> CompanyPolicies { get; set; }
+        //public DbSet<Person> People { get; set; }
+        //public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
+        //public DbSet<Policy> Policies { get; set; }
+        //public DbSet<CompanyPolicy> CompanyPolicies { get; set; }
 
 
         public static ApplicationDbContext Create()

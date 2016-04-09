@@ -10,119 +10,107 @@ using Insure.Web.Models;
 
 namespace Insure.Web.Controllers
 {
-    public class InsuranceCompaniesController : Controller
+    public class CompanyController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private DataContext db = new DataContext();
 
-        // GET: InsuranceCompanies
+        // GET: Company
         public ActionResult Index()
         {
-
-            return View(db.InsuranceCompanies.ToList());
+            return View(db.Companies.ToList());
         }
 
-        public ActionResult policiesOffered()
-        {
-            db.InsuranceCompanies.Include(i => i.Policies);
-            var offerings = db.InsuranceCompanies.Select(i => i.Policies);
- 
-
-
-            return View(offerings);
-        }
-
-        // GET: InsuranceCompanies/Details/5
-        public ActionResult Details(string id)
+        // GET: Company/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InsuranceCompany insuranceCompany = db.InsuranceCompanies.Find(id);
-            if (insuranceCompany == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(insuranceCompany);
+            return View(company);
         }
 
-        // GET: InsuranceCompanies/Create
+        // GET: Company/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: InsuranceCompanies/Create
+        // POST: Company/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InsuranceCompanyId,CompanyName,CompanyWebSite")] InsuranceCompany insuranceCompany)
+        public ActionResult Create([Bind(Include = "Id,Name,Website")] Company company)
         {
             if (ModelState.IsValid)
             {
-                db.InsuranceCompanies.Add(insuranceCompany);
-                
+                db.Companies.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(insuranceCompany);
+            return View(company);
         }
 
-        // GET: InsuranceCompanies/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Company/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InsuranceCompany insuranceCompany = db.InsuranceCompanies.Find(id);
-            if (insuranceCompany == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(insuranceCompany);
+            return View(company);
         }
 
-        // POST: InsuranceCompanies/Edit/5
+        // POST: Company/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InsuranceCompanyId,CompanyName,CompanyWebSite")] InsuranceCompany insuranceCompany)
+        public ActionResult Edit([Bind(Include = "Id,Name,Website")] Company company)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(insuranceCompany).State = EntityState.Modified;
+                db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(insuranceCompany);
+            return View(company);
         }
 
-        // GET: InsuranceCompanies/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Company/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InsuranceCompany insuranceCompany = db.InsuranceCompanies.Find(id);
-            if (insuranceCompany == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(insuranceCompany);
+            return View(company);
         }
 
-        // POST: InsuranceCompanies/Delete/5
+        // POST: Company/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            InsuranceCompany insuranceCompany = db.InsuranceCompanies.Find(id);
-            db.InsuranceCompanies.Remove(insuranceCompany);
+            Company company = db.Companies.Find(id);
+            db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

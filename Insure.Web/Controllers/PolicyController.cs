@@ -10,107 +10,116 @@ using Insure.Web.Models;
 
 namespace Insure.Web.Controllers
 {
-    public class PeopleController : Controller
+    public class PolicyController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private DataContext db = new DataContext();
 
-        // GET: People
+        // GET: Policy
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            var policies = db.Policies.Include(p => p.Company).Include(p => p.User);
+            return View(policies.ToList());
         }
 
-        // GET: People/Details/5
-        public ActionResult Details(string id)
+        // GET: Policy/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Policy policy = db.Policies.Find(id);
+            if (policy == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(policy);
         }
 
-        // GET: People/Create
+        // GET: Policy/Create
         public ActionResult Create()
         {
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
-        // POST: People/Create
+        // POST: Policy/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Age,Zipcode")] Person person)
+        public ActionResult Create([Bind(Include = "Id,Name,Premium,Deductible,CoInsurance,CoPay,CompanyId,UserId")] Policy policy)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(person);
+                db.Policies.Add(policy);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", policy.UserId);
+            return View(policy);
         }
 
-        // GET: People/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Policy/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Policy policy = db.Policies.Find(id);
+            if (policy == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", policy.UserId);
+            return View(policy);
         }
 
-        // POST: People/Edit/5
+        // POST: Policy/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Age,Zipcode")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,Name,Premium,Deductible,CoInsurance,CoPay,CompanyId,UserId")] Policy policy)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                db.Entry(policy).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", policy.UserId);
+            return View(policy);
         }
 
-        // GET: People/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Policy/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = db.People.Find(id);
-            if (person == null)
+            Policy policy = db.Policies.Find(id);
+            if (policy == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(policy);
         }
 
-        // POST: People/Delete/5
+        // POST: Policy/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Person person = db.People.Find(id);
-            db.People.Remove(person);
+            Policy policy = db.Policies.Find(id);
+            db.Policies.Remove(policy);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -9,26 +9,29 @@ namespace Insure.Web.Models
 {
     public class Policy
     {
-        public string PolicyId { get; set; }
-        [DisplayName("Policy")]
-        public string PolicyName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+
         [DisplayName("Monthly Premium")]
         [DataType(DataType.Currency)]
-        public decimal MonthlyPremium { get; set; }
-        public int Deductible { get; set; }
-        public bool IsCoinsurance { get; set; }
-        public decimal CoInsurancePercentage { get;set; }
-        public bool IsCopay { get; set; }
-        public int? PCPCopay { get; set; }
-        public int? ERCopay { get; set; }
-        public CompanyPolicy CompanyPolicy { get; set; }
+        public double Premium { get; set; }
 
+        [DisplayName("Annual Deductible")]
+        [DataType(DataType.Currency)]
+        public double Deductible { get; set; }
 
+        [DisplayName("Co-Insurance Amount")]
+        [DataType(DataType.Currency)]
+        public decimal? CoInsurance { get; set; }
 
+        [DisplayName("Co-Pay Amount")]
+        [DataType(DataType.Currency)]
+        public double? CoPay { get; set; }                                  
+        public int CompanyId { get; set; }
+        public int UserId { get; set; }
 
-        public Policy()
-        {
+        public virtual Company Company { get; set; }
+        public virtual User User { get; set; }
 
-        }
     }
 }
