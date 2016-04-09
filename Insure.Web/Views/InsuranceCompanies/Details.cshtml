@@ -1,0 +1,34 @@
+﻿@model Insure.Web.Models.InsuranceCompany
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InsuranceCompany</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyWebSite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyWebSite)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InsuranceCompanyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

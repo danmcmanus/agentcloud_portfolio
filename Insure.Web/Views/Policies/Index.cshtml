@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Insure.Web.Models.Policy>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PolicyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MonthlyPremium)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deductible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCoinsurance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoInsurancePercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCopay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PCPCopay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ERCopay)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PolicyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthlyPremium)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deductible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCoinsurance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoInsurancePercentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCopay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PCPCopay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ERCopay)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PolicyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PolicyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PolicyId })
+        </td>
+    </tr>
+}
+
+</table>
