@@ -1,7 +1,31 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model IEnumerable<Insure.Web.ViewModels.CompanyClientsGroup>
 
-<p>Use this area to provide additional information.</p>
+@{
+    ViewBag.Title = "Subscribers by Company";
+}
+
+<h2>Subscribers by Company</h2>
+
+<table>
+    <tr>
+        <th>
+            Company
+        </th>
+        <th>
+            Clients
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyUsers.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserCount)
+            </td>
+        </tr>
+    }
+</table>

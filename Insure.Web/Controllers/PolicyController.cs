@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Insure.Web.Models;
+using Insure.Web.Helpers;
 
 namespace Insure.Web.Controllers
 {
@@ -18,6 +19,7 @@ namespace Insure.Web.Controllers
         public ActionResult Index()
         {
             var policies = db.Policies.Include(p => p.Company).Include(p => p.User);
+            
             return View(policies.ToList());
         }
 
@@ -40,7 +42,7 @@ namespace Insure.Web.Controllers
         public ActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");  //FirstName => FullName
             return View();
         }
 
@@ -49,7 +51,7 @@ namespace Insure.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Premium,Deductible,CoInsurance,CoPay,CompanyId,UserId")] Policy policy)
+        public ActionResult Create([Bind(Include = "Id,Name,Premium,Deductible,CoInsurance,CoPay,InsuranceType,CompanyId,UserId")] Policy policy)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +61,7 @@ namespace Insure.Web.Controllers
             }
 
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", policy.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", policy.UserId);
             return View(policy);
         }
 
@@ -76,7 +78,7 @@ namespace Insure.Web.Controllers
                 return HttpNotFound();
             }
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", policy.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", policy.UserId);
             return View(policy);
         }
 
@@ -85,7 +87,7 @@ namespace Insure.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Premium,Deductible,CoInsurance,CoPay,CompanyId,UserId")] Policy policy)
+        public ActionResult Edit([Bind(Include = "Id,Name,Premium,Deductible,CoInsurance,CoPay,InsuranceType,CompanyId,UserId")] Policy policy)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +96,7 @@ namespace Insure.Web.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", policy.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", policy.UserId);
             return View(policy);
         }
 

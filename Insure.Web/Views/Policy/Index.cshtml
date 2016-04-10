@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Company.Name)
+            Company
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
+            @Html.DisplayNameFor(model => model.User.FullName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Company.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
+            @Html.DisplayFor(modelItem => item.User.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -53,7 +53,7 @@
             @Html.DisplayFor(modelItem => item.Deductible)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CoInsurance)
+            @Html.DisplayTextFor(modelItem => item.CoInsurance).ToString()
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CoPay)

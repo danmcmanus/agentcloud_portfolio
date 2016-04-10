@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Insure.Web.Models;
+using Insure.Web.ViewModels;
 
 namespace Insure.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private DataContext db = new DataContext();
         public ActionResult Index()
         {
             return View();
@@ -15,9 +18,20 @@ namespace Insure.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            IQueryable<CompanyClientsGroup> data = from user in db.Policies
+                                                   group user by user.Company into userGroup
+                                                   select new CompanyClientsGroup()
+                                                   {
+                                                       CompanyUsers = userGroup.Key,
+                                                       UserCount = userGroup.Count()
+                                                   };
+            return View(data.ToList());
+        }
 
-            return View();
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
 
         public ActionResult Contact()

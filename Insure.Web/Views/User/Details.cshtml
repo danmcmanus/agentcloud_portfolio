@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.FullName)</h2>
 
 <div>
-    <h4>User</h4>
+    <h4>Summary:</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,11 +41,11 @@
         <dd>
             <table class="table">
                 <tr>
+                    <th>Insurance Company</th>
                     <th>Policy Name</th>
-                    <th>Company</th>
                 </tr>
                 @foreach (var item in Model.Policies)
-                {
+{
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Company.Name)
@@ -57,18 +57,10 @@
                 }
             </table>
         </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.CompanyId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CompanyId)
-        </dd>*@
-
     </dl>
 </div>
 <p>
+    @Html.ActionLink("Add","Create","Policy",new { id = Model.Id },"~/Controllers/PolicyController")
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
