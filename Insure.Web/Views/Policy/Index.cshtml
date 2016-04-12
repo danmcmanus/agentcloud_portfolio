@@ -14,7 +14,7 @@
 {
     <p>
         Search by Company: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input c"type="submit" value="Search" />
+        <input type="submit" placeholder="Search" />
 
     </p>
 }
@@ -57,7 +57,18 @@
             @Html.DisplayTextFor(modelItem => item.CoInsurance)<span class="text text-center"> %</span>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CoPay)
+            @{
+                switch ("display")
+                {
+                    case "value":
+                        @Html.DisplayFor(modelItem => item.CoPay)
+                        break;
+                    default:
+                    case "noValue":
+                        <a class="fa-minus"></a>
+                        break;
+                }
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
@@ -75,5 +86,51 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+@using (Html.BeginForm("Convert", "Policy", FormMethod.Post))
+{
+
+    <div class="hidden">
+        <p>
+            Url:<br />
+            <input type="text" value="http://localhost:22032/Policy/Index" name="TxtUrl" style="width: 90%" />
+        </p>
+        <div class="col2">
+            Pdf Page Size:<br />
+            <select name="DdlPageSize">
+                <option value="A1">A1"></option>
+                <option value="A2">A2</option>
+                <option value="A3">A3</option>
+                <option value="A4" selected>A4</option>
+                <option value="A5">A5</option>
+                <option value="Letter">Letter</option>
+                <option value="HalfLetter">HalfLetter</option>
+                <option value="Ledger">Ledger</option>
+                <option value="Legal">Legal</option>
+            </select><br />
+            <br />
+            Pdf Page Orientation:<br />
+            <select name="DdlPageOrientation">
+                <option value="Portrait" selected>Portrait</option>
+                <option value="Landscape">Landscape</option>
+            </select><br />
+            <br />
+        </div>
+        <div class="col2">
+            Web Page Width:<br />
+            <input name="TxtWidth" type="text" style="width: 50px" value="1024" /> px<br />
+            <br />
+            Web Page Height:<br />
+            <input name="TxtHeight" type="text" style="width: 50px" value="" /> px<br />
+            (leave empty to auto detect)<br />
+            <br />
+
+        </div>
+    </div>
+        <div class="col-clear"></div>
+        <p>
+            <input type="submit" name="BtnConvert" value="Create PDF" class="mybutton" />
+        </p>
+}
 
 

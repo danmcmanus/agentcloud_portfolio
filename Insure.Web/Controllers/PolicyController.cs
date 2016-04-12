@@ -9,12 +9,9 @@ using System.Web.Mvc;
 using Insure.Web.Models;
 using Insure.Web.Helpers;
 using PagedList;
-using iTextSharp;
-using iTextSharp.text;
 using System.IO;
-using iTextSharp.text.pdf;
 using System.Web.UI;
-using iTextSharp.text.html.simpleparser;
+using SelectPdf;
 
 namespace Insure.Web.Controllers
 {
@@ -179,6 +176,8 @@ namespace Insure.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -188,49 +187,55 @@ namespace Insure.Web.Controllers
             base.Dispose(disposing);
         }
 
-        public byte[] GetPDF(string pHTML)
+
+        [HttpPost]
+        public ActionResult Convert(FormCollection collection)
         {
-            byte[] bPDF = null;
+            // read parameters from the webpage
+            string url = collection["TxtUrl"];
 
-            MemoryStream ms = new MemoryStream();
-            TextReader txtReader = new StringReader(pHTML);
+            string pdf_page_size = collection["DdlPageSize"];
+            PdfPageSize pageSize = (PdfPageSize)Enum.Parse(typeof(PdfPageSize), pdf_page_size, true);
 
-            // 1: create object of a itextsharp document class
-            Document doc = new Document(PageSize.A4, 25, 25, 25, 25);
+            string pdf_orientation = collection["DdlPageOrientation"];
+            PdfPageOrientation pdfOrientation = (PdfPageOrientation)Enum.Parse(typeof(PdfPageOrientation), pdf_orientation, true);
 
-            // 2: we create a itextsharp pdfwriter that listens to the document and directs a XML-stream to a file
-            PdfWriter oPdfWriter = PdfWriter.GetInstance(doc, ms);
+            int webPageWidth = 1024;
+            try
+            {
+                webPageWidth = System.Convert.ToInt32(collection["TxtWidth"]);
+            }
+            catch { }
 
-            // 3: we create a worker parse the document
-            HTMLWorker htmlWorker = new HTMLWorker(doc);
+            int webPageHeight = 0;
+            try
+            {
+                webPageHeight = System.Convert.ToInt32(collection["TxtHeight"]);
+            }
+            catch { }
 
-            // 4: we open document and start the worker on the document
-            doc.Open();
-            htmlWorker.StartDocument();
+            // instantiate a html to pdf converter object
+            HtmlToPdf converter = new HtmlToPdf();
 
-            // 5: parse the html into the document
-            htmlWorker.Parse(txtReader);
+            // set converter options
+            converter.Options.PdfPageSize = pageSize;
+            converter.Options.PdfPageOrientation = pdfOrientation;
+            converter.Options.WebPageWidth = webPageWidth;
+            converter.Options.WebPageHeight = webPageHeight;
 
-            // 6: close the document and the worker
-            htmlWorker.EndDocument();
-            htmlWorker.Close();
+            // create a new pdf document converting an url
+            PdfDocument doc = converter.ConvertUrl(url);
+
+            // save pdf document
+            byte[] pdf = doc.Save();
+
+            // close pdf document
             doc.Close();
 
-            bPDF = ms.ToArray();
-
-            return bPDF;
-        }
-
-        public void DownloadPDF()
-        {
-            string HTMLContent = "Hello <b>World</b>";
-
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=" + "PDFfile.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.BinaryWrite(GetPDF(HTMLContent));
-            Response.End();
+            // return resulted pdf document
+            FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+            fileResult.FileDownloadName = "Document.pdf";
+            return fileResult;
         }
     }
 }

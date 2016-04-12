@@ -27,7 +27,7 @@ namespace Insure.Web.Models
         public int? CoInsurance { get; set; }
 
         [DisplayName("Co-Pay Amount")]
-        [DisplayFormat(NullDisplayText = "-")]
+        [DisplayFormat(NullDisplayText = "")]
         [DataType(DataType.Currency)]
         public double? CoPay { get; set; }
         [DisplayName("Select Company")]                               

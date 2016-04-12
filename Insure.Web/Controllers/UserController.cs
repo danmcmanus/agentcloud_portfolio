@@ -8,8 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Insure.Web.Models;
 using PagedList;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using System.IO;
 
 namespace Insure.Web.Controllers
