@@ -19,6 +19,10 @@ namespace Insure.Web.Controllers
     {
         private DataContext db = new DataContext();
 
+        public ActionResult Calculate()
+        {
+            return View();
+        }
         public ActionResult Index(string SortOrder, string currentFilter, string searchstring, int? page)
         {
             ViewBag.CurrentSort = SortOrder;
