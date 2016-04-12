@@ -73,7 +73,11 @@
     }
 
 </table>
+<br />
 
+<p>
+    @Html.ActionLink("Create PDF", "Index", "User", null, new { @class = "btn btn-primary btn-lg" })
+</p>
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 

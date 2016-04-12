@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Insure.Web.Models.Policy>
-
+﻿@model PagedList.IPagedList<Insure.Web.Models.Policy>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
 }
@@ -9,28 +10,31 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index","Policy", FormMethod.Get))
+{
+    <p>
+        Search by Company: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input c"type="submit" value="Search" />
+
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            Company
+            @Html.ActionLink("Company", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>Policy</th>
+        <th>
+            @Html.ActionLink("Premium", "Index", new { sortOrder = ViewBag.PremiumSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.FullName)
+            Deductible
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Co-Ins %
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Premium)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deductible)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoInsurance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoPay)
+            Co-Pay
         </th>
         <th></th>
     </tr>
@@ -39,9 +43,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Company.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -53,7 +54,7 @@
             @Html.DisplayFor(modelItem => item.Deductible)
         </td>
         <td>
-            @Html.DisplayTextFor(modelItem => item.CoInsurance).ToString()
+            @Html.DisplayTextFor(modelItem => item.CoInsurance)<span class="text text-center"> %</span>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CoPay)
@@ -67,3 +68,12 @@
 }
 
 </table>
+<br />
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+

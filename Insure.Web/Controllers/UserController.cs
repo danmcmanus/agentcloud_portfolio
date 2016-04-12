@@ -8,14 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using Insure.Web.Models;
 using PagedList;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+
 namespace Insure.Web.Controllers
 {
     public class UserController : Controller
     {
         private DataContext db = new DataContext();
-
+       
         public ActionResult Index(string SortOrder, string currentFilter, string searchString, int? page)
         {
+            
             ViewBag.CurrentSort = SortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(SortOrder) ? "name_desc" : "";
             ViewBag.AgeSortParm = SortOrder == "Age" ? "age_desc" : "Age";
@@ -53,7 +58,7 @@ namespace Insure.Web.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(users.ToPagedList(pageNumber,pageSize));
         }
@@ -82,6 +87,7 @@ namespace Insure.Web.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
