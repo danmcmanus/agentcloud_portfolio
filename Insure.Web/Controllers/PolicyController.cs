@@ -12,16 +12,29 @@ using PagedList;
 using System.IO;
 using System.Web.UI;
 using SelectPdf;
+using Insure.Web.Logic;
+using Insure.Web.ViewModels;
 
 namespace Insure.Web.Controllers
 {
     public class PolicyController : Controller
     {
+        List<Policy> policiesToCompare = new List<Policy>();
         private DataContext db = new DataContext();
-
-        public ActionResult Calculate()
+        Policy policy = new Policy();
+        public List<Policy> IncludeInComparison(int? id)
         {
-            return View();
+            var pol = db.Policies.Find(id);
+            policiesToCompare.Add(pol);
+                
+                
+            return policiesToCompare;
+        }
+        
+        public ActionResult Calculate(int? id )
+        {
+            List<Policy> policies = IncludeInComparison(id);
+            return View(policies);
         }
         public ActionResult Index(string SortOrder, string currentFilter, string searchstring, int? page)
         {
