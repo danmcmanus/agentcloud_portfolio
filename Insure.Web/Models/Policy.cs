@@ -25,6 +25,9 @@ namespace Insure.Web.Models
         [DisplayName("Co-Insurance Amount")]
         [DisplayFormat(NullDisplayText ="-")]
         public int? CoInsurance { get; set; }
+        [DisplayName("Max Out-Of-Pocket")]
+        [DataType(DataType.Currency)]
+        public int Out_Of_Pocket_Max { get; set; }
 
         [DisplayName("Co-Pay Amount")]
         [DisplayFormat(NullDisplayText = "")]

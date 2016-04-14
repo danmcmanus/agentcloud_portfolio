@@ -22,5 +22,7 @@ namespace Insure.Web.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<Insure.Web.Models.Calculator> Calculators { get; set; }
     }
 }

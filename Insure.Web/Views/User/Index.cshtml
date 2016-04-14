@@ -74,10 +74,16 @@
 
 </table>
 <br />
+@using (Html.BeginForm("Convert","User",FormMethod.Post))
+{
 
-<p>
-    @Html.ActionLink("Create PDF", "Index", "User", null, new { @class = "btn btn-primary btn-lg" })
-</p>
+
+
+    <input type="submit" name="BtnConvert" value="Create PDF" class="mybutton" />
+
+<div class="col-md-offset-4" />
+}
+
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 

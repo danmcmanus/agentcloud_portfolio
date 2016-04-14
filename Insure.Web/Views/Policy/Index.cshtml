@@ -20,40 +20,9 @@
     </p>
 }
 <p>
-    @Html.ActionLink("Compare Policies", "Calculate")
+    @Html.ActionLink("Compare Policies", "Index", "Calculator")
 
 </p>
-@using (Html.BeginForm("Compare", "Policy", FormMethod.Post))
-{
-    <div class="col-md-6">
-        <ul>
-            <text>Policy 1</text>
-            <li>Premium: @Html.TextBox("Premium")</li>
-            <li>Deductible: @Html.TextBox("Deductible")</li>
-            <li>Co - Insurance Percentage: @Html.TextBox("Co-Insurance")</li>
-            <li>Out of Pocket Max: @Html.TextBox("Out-Of-Pocket-Max")</li>
-        </ul>
-    </div>
-    <div class="col-md-6">
-        <ul>
-            <text>Policy 2</text>
-            <li>Premium: @Html.TextBox("Premium")</li>
-            <li>Deductible: @Html.TextBox("Deductible")</li>
-            <li>Co - Insurance Percentage: @Html.TextBox("Co-Insurance")</li>
-            <li>Out of Pocket Max: @Html.TextBox("Out-Of-Pocket-Max")</li>
-        </ul>
-    </div>
-    <div class="col-md-6">
-        <p>
-            Expected Medical Expenses: @Html.TextBox("ExpectedCost")
-        </p>
-    </div>
-    <div class="col-md-6">
-        <p>
-            <button type="submit" placeholder="Compare">Compare</button>
-        </p>
-    </div>
-}
 <br />
 
 <table class="table">
@@ -73,6 +42,9 @@
         </th>
         <th>
             Co-Pay
+        </th>
+        <th>
+            Max Out-Of-Pocket
         </th>
 
         <th></th>
@@ -99,6 +71,9 @@
             <td>
                 @Html.DisplayTextFor(modelItem => item.CoPay)
             </td>
+            <td>
+                @Html.DisplayTextFor(modelItem => item.Out_Of_Pocket_Max)
+            </td>
             <td> </td>
         </tr>
     }
@@ -116,43 +91,44 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 @using (Html.BeginForm("Convert", "Policy", FormMethod.Post))
 {
 
-    <div class="hidden">
-        <p>
-            Url:<br />
-            <input type="text" value="http://localhost:22032/Policy/Index" name="TxtUrl" style="width: 90%" />
-        </p>
-        <div class="col2">
-            Pdf Page Size:<br />
-            <select name="DdlPageSize">
-                <option value="A1">A1"></option>
-                <option value="A2">A2</option>
-                <option value="A3">A3</option>
-                <option value="A4" selected>A4</option>
-                <option value="A5">A5</option>
-                <option value="Letter">Letter</option>
-                <option value="HalfLetter">HalfLetter</option>
-                <option value="Ledger">Ledger</option>
-                <option value="Legal">Legal</option>
-            </select><br />
-            <br />
-            Pdf Page Orientation:<br />
-            <select name="DdlPageOrientation">
-                <option value="Portrait" selected>Portrait</option>
-                <option value="Landscape">Landscape</option>
-            </select><br />
-            <br />
-        </div>
-        <div class="col2">
-            Web Page Width:<br />
-            <input name="TxtWidth" type="text" style="width: 50px" value="1024" /> px<br />
-            <br />
-            Web Page Height:<br />
-            <input name="TxtHeight" type="text" style="width: 50px" value="" /> px<br />
-            (leave empty to auto detect)<br />
-            <br />
-
-        </div>
+    @*<div class="container">
+        <bs-form-group-horizontal>
+            <p>
+                Url:<br />
+                <input type="text" value="http://localhost:22032/Policy/Index" name="TxtUrl" style="width: 90%" />
+            </p>
+        </bs-form-group-horizontal>
+            <div class="col2">
+                Pdf Page Size:<br />
+                <select name="DdlPageSize">
+                    <option value="A1">A1"></option>
+                    <option value="A2">A2</option>
+                    <option value="A3">A3</option>
+                    <option value="A4" selected>A4</option>
+                    <option value="A5">A5</option>
+                    <option value="Letter">Letter</option>
+                    <option value="HalfLetter">HalfLetter</option>
+                    <option value="Ledger">Ledger</option>
+                    <option value="Legal">Legal</option>
+                </select><br />
+                <br />
+                Pdf Page Orientation:<br />
+                <select name="DdlPageOrientation">
+                    <option value="Portrait" selected>Portrait</option>
+                    <option value="Landscape">Landscape</option>
+                </select><br />
+                <br />
+            </div>
+            <div class="col2">
+                Web Page Width:<br />
+                <input name="TxtWidth" type="text" style="width: 50px" value="1024" /> px<br />
+                <br />
+                Web Page Height:<br />
+                <input name="TxtHeight" type="text" style="width: 50px" value="" /> px<br />
+                (leave empty to auto detect)<br />
+                <br />
     </div>
+    </div>*@
     <div class="col-clear"></div>
         <p>
             <input type="submit" name="BtnConvert" value="Create PDF" class="mybutton" />

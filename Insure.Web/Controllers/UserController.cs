@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Insure.Web.Models;
 using PagedList;
 using System.IO;
+using SelectPdf;
+using Insure.Web.Helpers;
 
 namespace Insure.Web.Controllers
 {
@@ -56,7 +58,7 @@ namespace Insure.Web.Controllers
                     break;
             }
 
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(users.ToPagedList(pageNumber,pageSize));
         }
@@ -196,6 +198,14 @@ namespace Insure.Web.Controllers
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Convert(FormCollection collection)
+        {
+            PdfHelper.ConversionUrl = "http://localhost:22032/User";
+            var conversion = PdfHelper.Convert(collection);
+            return conversion;
         }
 
         protected override void Dispose(bool disposing)

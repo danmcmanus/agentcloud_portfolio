@@ -15,27 +15,16 @@ using SelectPdf;
 using Insure.Web.Logic;
 using Insure.Web.ViewModels;
 
+
 namespace Insure.Web.Controllers
 {
     public class PolicyController : Controller
     {
-        List<Policy> policiesToCompare = new List<Policy>();
+
         private DataContext db = new DataContext();
-        Policy policy = new Policy();
-        public List<Policy> IncludeInComparison(int? id)
-        {
-            var pol = db.Policies.Find(id);
-            policiesToCompare.Add(pol);
-                
-                
-            return policiesToCompare;
-        }
+
+
         
-        public ActionResult Calculate(int? id )
-        {
-            List<Policy> policies = IncludeInComparison(id);
-            return View(policies);
-        }
         public ActionResult Index(string SortOrder, string currentFilter, string searchstring, int? page)
         {
             ViewBag.CurrentSort = SortOrder;
@@ -73,7 +62,7 @@ namespace Insure.Web.Controllers
                     policies = policies.OrderBy(p => p.Company.Name);
                     break;
             }
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             return View(policies.ToPagedList(pageNumber,pageSize));
@@ -203,56 +192,32 @@ namespace Insure.Web.Controllers
             }
             base.Dispose(disposing);
         }
-
-
         [HttpPost]
         public ActionResult Convert(FormCollection collection)
         {
-            // read parameters from the webpage
-            string url = collection["TxtUrl"];
-
-            string pdf_page_size = collection["DdlPageSize"];
-            PdfPageSize pageSize = (PdfPageSize)Enum.Parse(typeof(PdfPageSize), pdf_page_size, true);
-
-            string pdf_orientation = collection["DdlPageOrientation"];
-            PdfPageOrientation pdfOrientation = (PdfPageOrientation)Enum.Parse(typeof(PdfPageOrientation), pdf_orientation, true);
-
-            int webPageWidth = 1024;
-            try
-            {
-                webPageWidth = System.Convert.ToInt32(collection["TxtWidth"]);
-            }
-            catch { }
-
-            int webPageHeight = 0;
-            try
-            {
-                webPageHeight = System.Convert.ToInt32(collection["TxtHeight"]);
-            }
-            catch { }
-
-            // instantiate a html to pdf converter object
-            HtmlToPdf converter = new HtmlToPdf();
-
-            // set converter options
-            converter.Options.PdfPageSize = pageSize;
-            converter.Options.PdfPageOrientation = pdfOrientation;
-            converter.Options.WebPageWidth = webPageWidth;
-            converter.Options.WebPageHeight = webPageHeight;
-
-            // create a new pdf document converting an url
-            PdfDocument doc = converter.ConvertUrl(url);
-
-            // save pdf document
-            byte[] pdf = doc.Save();
-
-            // close pdf document
-            doc.Close();
-
-            // return resulted pdf document
-            FileResult fileResult = new FileContentResult(pdf, "application/pdf");
-            fileResult.FileDownloadName = "Document.pdf";
-            return fileResult;
+            PdfHelper.ConversionUrl = "http://localhost:22032/Policy";
+            var conversion = PdfHelper.Convert(collection);
+            return conversion;
         }
+
+        //[HttpPost]
+        //public ActionResult Convert(FormCollection collection)
+        //{
+
+        //    HtmlToPdf converter = new HtmlToPdf();
+
+        //    converter.Options.PdfPageSize = PdfPageSize.A4;
+        //    converter.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
+        //    converter.Options.WebPageWidth = 1202;
+        //    converter.Options.WebPageHeight = 0;
+        //    PdfDocument doc = converter.ConvertUrl("http://localhost:22032/Policy");
+
+        //    byte[] pdf = doc.Save();
+        //    doc.Close();
+
+        //    FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+        //    fileResult.FileDownloadName = "Document.pdf";
+        //    return fileResult;
+        //}
     }
 }

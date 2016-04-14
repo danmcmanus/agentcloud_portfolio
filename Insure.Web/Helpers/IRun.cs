@@ -9,6 +9,7 @@ namespace Insure.Web.Helpers
 {
     public interface IRun
     {
-        ActionResult Run();
+        string Url { get; set; }
+        ActionResult Convert();
     }
 }
