@@ -12,6 +12,11 @@ namespace Insure.Web.Controllers
         DataContext db = new DataContext();
         Company select = new Company() {Id=0,Name="Select" };
 
+        public override string ToString()
+        {
+
+            return "";
+        }
         public ActionResult Index()
         {
             List<string> ListItems = new List<string>();
