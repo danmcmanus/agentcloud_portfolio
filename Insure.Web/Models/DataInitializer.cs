@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Insure.Web.Models.Salesforce1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -44,9 +45,17 @@ namespace Insure.Web.Models
                 new Policy {UserId=6,CompanyId=003,Name="Envision Aurora Bellin PPO - Gold 1000/90-PPO",Premium=410,Deductible=1000,CoPay=35,Out_Of_Pocket_Max=4000 },
                 new Policy {UserId=7,CompanyId=004,Name="Anthem Bronze Blue Priority X WI 6050 25 - HMO",Premium=272,Deductible=6050,CoInsurance=25,Out_Of_Pocket_Max=12000 }
             };
-
             policies.ForEach(p => context.Policies.Add(p));
             context.SaveChanges();
+
+            var contacts = new List<Contact>
+            {
+                new Contact {Id="1",FirstName="Max",LastName="Powers" },
+                new Contact {Id="2",FirstName="Sean",LastName="Tarley" }
+            };
+            contacts.ForEach(c => context.Contacts.Add(c));
+            context.SaveChanges();
+
         }
     }
 }

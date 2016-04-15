@@ -39,6 +39,7 @@
                                     <li>@Html.Partial("_LoginPartial")</li>
                                     <li>@Html.ActionLink("Calculator","Index","Calculator" )</li>
                                     <li>@Html.ActionLink("Companies","Index","Company")</li>
+                                    <li>@Html.ActionLink("Salesforce Contacts", "Index", "Contacts")</li> 
                                 </ul>
                             </li>
                             <li class="divider-vertical"></li>
@@ -66,6 +67,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript" async="async" defer="defer" data-cfasync="false" src="https://mylivechat.com/chatinline.aspx?hccid=73615552"></script>
 
 </body>          
 

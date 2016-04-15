@@ -24,5 +24,7 @@ namespace Insure.Web.Models
         }
 
         public System.Data.Entity.DbSet<Insure.Web.Models.Calculator> Calculators { get; set; }
+
+        public System.Data.Entity.DbSet<Insure.Web.Models.Salesforce1.Contact> Contacts { get; set; }
     }
 }
