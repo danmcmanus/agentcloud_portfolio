@@ -48,18 +48,6 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Glimpse.AspNet, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.AspNet.1.9.2\lib\net45\Glimpse.AspNet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Glimpse.Mvc4, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.Mvc4.1.5.3\lib\net40\Glimpse.Mvc4.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -244,7 +232,6 @@
     <Compile Include="Controllers\PolicyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\ClaimsExtensions.cs" />
-    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,11 +257,9 @@
     <Compile Include="ViewModels\ComparePoliciesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.og.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.og.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\logo.png" />
@@ -282,27 +267,68 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\toggle-switch.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoon.dev.svg" />
     <Content Include="fonts\icomoon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.og.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="App_Data\Files\Doc1.pdf" />
     <Content Include="fonts\icomoon.eot" />
     <Content Include="fonts\icomoon.ttf" />
     <Content Include="fonts\icomoon.woff" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Templates\css\bootstrap-theme.css.map" />
+    <Content Include="Templates\css\bootstrap.css.map" />
+    <Content Include="Templates\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Templates\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Templates\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Templates\MediaLoot_License_Agreement.pdf" />
+    <Content Include="Templates\tables\data1.json" />
+    <Content Include="Templates\tables\data2.json" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
+    <Content Include="Templates\bg\blurred-background-1.jpg" />
+    <Content Include="Templates\bg\blurred-background-10.jpg" />
+    <Content Include="Templates\bg\blurred-background-2.jpg" />
+    <Content Include="Templates\bg\blurred-background-3.jpg" />
+    <Content Include="Templates\bg\blurred-background-4.jpg" />
+    <Content Include="Templates\bg\blurred-background-5.jpg" />
+    <Content Include="Templates\bg\blurred-background-6.jpg" />
+    <Content Include="Templates\bg\blurred-background-7.jpg" />
+    <Content Include="Templates\bg\blurred-background-8.jpg" />
+    <Content Include="Templates\bg\blurred-background-9.jpg" />
+    <Content Include="Templates\buttons.html" />
+    <Content Include="Templates\charts.html" />
+    <Content Include="Templates\css\bootstrap-table.css" />
+    <Content Include="Templates\css\bootstrap-theme.css" />
+    <Content Include="Templates\css\bootstrap-theme.min.css" />
+    <Content Include="Templates\css\bootstrap.css" />
+    <Content Include="Templates\css\bootstrap.min.css" />
+    <Content Include="Templates\css\datepicker.css" />
+    <Content Include="Templates\css\datepicker3.css" />
+    <Content Include="Templates\css\rgba-fallback.css" />
+    <Content Include="Templates\css\styles.css" />
+    <Content Include="Templates\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Templates\forms.html" />
+    <Content Include="Templates\index.html" />
+    <Content Include="Templates\js\bootstrap-datepicker.js" />
+    <Content Include="Templates\js\bootstrap-table.js" />
+    <Content Include="Templates\js\bootstrap.js" />
+    <Content Include="Templates\js\bootstrap.min.js" />
+    <Content Include="Templates\js\chart-data.js" />
+    <Content Include="Templates\js\chart.min.js" />
+    <Content Include="Templates\js\custom.js" />
+    <Content Include="Templates\js\easypiechart-data.js" />
+    <Content Include="Templates\js\easypiechart.js" />
+    <Content Include="Templates\js\html5shiv.min.js" />
+    <Content Include="Templates\js\jquery-1.11.1.min.js" />
+    <Content Include="Templates\js\respond.min.js" />
+    <Content Include="Templates\login.html" />
+    <Content Include="Templates\panels.html" />
+    <Content Include="Templates\tables.html" />
+    <Content Include="Templates\widgets.html" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.og.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.og.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
     <Content Include="Scripts\jquery-2.2.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -316,7 +342,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -326,7 +354,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Default_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -374,6 +402,7 @@
     <Content Include="Views\Contacts\Edit.cshtml" />
     <Content Include="Views\Contacts\Delete.cshtml" />
     <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

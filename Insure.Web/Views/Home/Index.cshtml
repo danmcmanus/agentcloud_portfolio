@@ -1,6 +1,33 @@
-﻿<div class="row">
-    <h1>AgentCloud</h1>
-    <img src="~/Content/logo.png" />
-</div>
+﻿@*<div class="sidebar">
+    <div id="sidebar-collapse">
+        <form role="search">
+            <div class="form-group" id="sidebarForm">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <ul class="nav menu">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Client Stats", "About", "Home")</li>
+            <li>@Html.ActionLink("Clients", "Index", "User")</li>
+            <li>@Html.ActionLink("Policies", "Index", "Policy")</li>
+            <li>@Html.ActionLink("Companies", "Index", "Company")</li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Manage
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.Partial("_LoginPartial")</li>
+                    <li>@Html.ActionLink("Calculator", "Index", "Calculator")</li>
+                    <li>@Html.ActionLink("Companies", "Index", "Company")</li>
+                    <li>@Html.ActionLink("Salesforce Contacts", "Index", "Contacts")</li>
+                </ul>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+        </ul>
+
+    </div>
+</div>*@
 
 
