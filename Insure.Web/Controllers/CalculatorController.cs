@@ -83,9 +83,18 @@ namespace Insure.Web.Controllers
 
             return Json(policyList);
         }
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult Details()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Details(int? id)
+        {
+            List<string> items = new List<string>();
+            return View();
+            
         }
 
         // GET: Calculator/Create

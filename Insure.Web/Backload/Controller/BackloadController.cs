@@ -34,9 +34,11 @@ namespace Backload.Controllers
                 // Call the execution pipeline and get the result
                 IBackloadResult result = await handler.Execute();
 
+                return RedirectToAction("Index","Home");
+
 
                 // Helper to create an ActionResult object from the IBackloadResult instance
-                return ResultCreator.Create(result);
+                //return ResultCreator.Create(result);
 
             }
             catch

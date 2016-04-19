@@ -1,0 +1,89 @@
+﻿
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">*@
+<style>
+    body {
+        font:bold;
+        color:azure;
+    }
+    form-group{
+        font-style:normal;
+        color:black;
+    }
+    
+</style>
+</head>
+<body>
+    <h1>Policy Cost Estimator:</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Policy 1</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>Policy 2</h3>
+        </div>
+    </div>
+    <br />
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+            <label class="control-label" for="form-group-in">Monthly Premium</label>
+            <input type="text" name="premium1"class="form-control" id="premium1" placeholder="$">
+        </div>
+          <div class="col-md-4">
+              <label class="control-label" for="form-group-in">Monthly Premium</label>
+              <input type="text" name="premium2" class="form-control" id="premium2" placeholder="$">
+          </div>
+      </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label class="control-label" for="form-group-in">Annual Deductible</label>
+                <input type="text" name="deductible1" class="form-control" id="deductible1" placeholder="$">
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="form-group-in">Annual Deductible</label>
+                <input type="text" name="deductible2" class="form-control" id="deuctible2" placeholder="$">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label class="control-label" for="form-group-in">Out-Of-Pocket-Max</label>
+                <input type="text" name="oop1" class="form-control" id="oop1" placeholder="$">
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="form-group-in">Out-Of-Pocket-Max</label>
+                <input type="text" name="oop2" class="form-control" id="oop2" placeholder="$">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label class="control-label" for="form-group-in">Estimated Cost of Procedure</label>
+                <input type="text" name="cost1" class="form-control" id="procedureCost1" placeholder="$">
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="form-group-in">Estimated Cost of Procedure</label>
+                <input type="text" name="cost2" class="form-control" id="procedureCost2" placeholder="$">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-offset-4">
+                <input class="btn btn-default" type="submit" formmethod="post" />
+            </div>
+        </div>
+    </div>
+}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</body>
+</html>
