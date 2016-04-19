@@ -6,8 +6,10 @@ using System.Web.Mvc;
 using Insure.Web.Models;
 using Insure.Web.ViewModels;
 
+
 namespace Insure.Web.Controllers
 {
+    using System.IO;
     public class HomeController : Controller
     {
         private DataContext db = new DataContext();

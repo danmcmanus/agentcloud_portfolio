@@ -9,16 +9,16 @@
     position: relative;
     clear: both;
     border: 1px solid #dddddd;
-    border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .fixed-table-header {
     overflow: hidden;
-    border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
 }
 
 .fixed-table-body {
@@ -42,14 +42,16 @@
     border-left: none;
 }
 
-.fixed-table-container thead th .th-inner {
-    padding: 8px;
-    line-height: 24px;
-    vertical-align: top;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+    .fixed-table-container thead th .th-inner {
+        padding: 8px;
+        line-height: 24px;
+        vertical-align: top;
+        overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
 .fixed-table-container thead th .sortable {
     cursor: pointer;
@@ -167,11 +169,15 @@
 
 /* support bootstrap 2 */
 .fixed-table-body thead th .th-inner {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 .table th, .table td {
     vertical-align: middle;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 

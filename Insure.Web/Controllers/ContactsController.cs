@@ -8,11 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using Insure.Web.Models.Salesforce1;
 using Insure.Web.Salesforce1;
+using Insure.Web.Models;
 
 namespace Insure.Web.Controllers
 {
     public class ContactsController : Controller
     {
+        DataContext db = new DataContext();
+
+        public ActionResult Convert(User user)
+        {
+            return View();
+        }
         // Note: the SOQL Field list, and Binding Property list have subtle differences as custom properties may be mapped with the JsonProperty attribute to remove __c
         const string _ContactsPostBinding = "Id,Salutation,FirstName,LastName,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Phone,Email";
         // GET: Contacts
@@ -26,9 +33,16 @@ namespace Insure.Web.Controllers
                     {
                         QueryResult<Contact> contacts =
                             await client.QueryAsync<Contact>("SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact");
+
                         return contacts.Records;
                     }
                     );
+                foreach (var item in selectedContacts)
+                {
+                    db.Contacts.Add(item);
+                }
+                db.SaveChanges();
+                db.Dispose();
             }
             catch (Exception e)
             {

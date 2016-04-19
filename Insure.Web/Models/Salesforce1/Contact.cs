@@ -222,5 +222,11 @@ namespace Insure.Web.Models.Salesforce1
 
         public Insure.Web.Models.User User { get; set; }
         public Insure.Web.Models.Company Company { get; set; }
+
+        public Contact()
+        {
+            
+        }
     }
+
 }

@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿
+using Backload.Bundles;
+using System.Web;
 using System.Web.Optimization;
 
 namespace Insure.Web
@@ -8,7 +10,9 @@ namespace Insure.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            
+            BackloadBundles.RegisterBundles(bundles);
+            // Add or remove this line for the bundeling feature
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
