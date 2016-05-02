@@ -56,9 +56,6 @@
       <HintPath>..\packages\Backload.Core.2.2.2.0\lib\net45\Backload.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Backload.Plugin.Database">
-      <HintPath>D:\NuGet\Backload.Plugin.Database.Pro.2.2.2.0\content\net45\Backload\Plugin\Backload.Plugin.Database.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -92,20 +89,16 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PerfectPdf, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PerfectPdf.2.0.0-rc09\lib\net451\PerfectPdf.dll</HintPath>
+    <Reference Include="RazorEngine, Version=3.8.2.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.8.2\lib\net45\RazorEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RazorEngine, Version=3.5.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
-      <HintPath>..\packages\RazorEngine.3.5.0\lib\net45\RazorEngine.dll</HintPath>
+    <Reference Include="Salesforce.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f7864e53fb79388, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeveloperForce.Force.1.3.0\lib\Salesforce.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Salesforce.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DeveloperForce.Force.1.0.1\lib\Salesforce.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Salesforce.Force, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DeveloperForce.Force.1.0.1\lib\Salesforce.Force.dll</HintPath>
+    <Reference Include="Salesforce.Force, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f7864e53fb79388, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeveloperForce.Force.1.3.0\lib\Salesforce.Force.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Select.HtmlToPdf, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
@@ -243,6 +236,7 @@
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\FileHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PolicyController.cs" />
@@ -255,17 +249,24 @@
     <Compile Include="Helpers\IRun.cs" />
     <Compile Include="Helpers\PercentageAttribute.cs" />
     <Compile Include="Logic\Calculator.cs" />
+    <Compile Include="Migrations\201605020601087_initial.cs" />
+    <Compile Include="Migrations\201605020601087_initial.Designer.cs">
+      <DependentUpon>201605020601087_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\FilesContext.cs" />
     <Compile Include="Models\DataInitializer.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Policy.cs" />
     <Compile Include="Models\Salesforce1\Contact.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\UserFile.cs" />
+    <Compile Include="App_Data\AssemblyInfo.cs" />
     <Compile Include="Service References\Salesforce1\SalesforceOAuthRedirectHandler.cs" />
     <Compile Include="Service References\Salesforce1\SalesforceService.cs" />
     <Compile Include="Startup.cs" />
@@ -331,6 +332,90 @@
     <Content Include="Backload\Client\blueimp\loadimage\js\vendor\jquery.Jcrop.js" />
     <Content Include="Backload\Client\blueimp\templates\js\tmpl.js" />
     <Content Include="Backload\Client\blueimp\templates\js\tmpl.min.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ar.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\az.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\bg.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\bs.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ca.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\cs.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\cy.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\da.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\de.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\el.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\en.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\es.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\et.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\fa.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\fi.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\fr.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\he.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\hr.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\hu.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\hy.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\id.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\it.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ja.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ka.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\kk.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\km.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ko.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ku_IQ.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\lt.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\lv.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\mn.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ms.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\nl.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\pl.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\pt_BR.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ro.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\ru.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\sk.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\sq.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\sr.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\sr_RS.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\sv.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\th_TH.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\tr.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\uk_UA.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\vi.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\zh_CN.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\i18n\zh_TW.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\css\jquery.plupload.queue.css" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\backgrounds.gif" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\buttons-disabled.png" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\buttons.png" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\delete.gif" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\done.gif" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\error.gif" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\throbber.gif" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\img\transp50.png" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\jquery.plupload.queue.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.plupload.queue\jquery.plupload.queue.min.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.ui.plupload\css\jquery.ui.plupload.css" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.ui.plupload\img\loading.gif" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.ui.plupload\img\plupload.png" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.ui.plupload\jquery.ui.plupload.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\jquery.ui.plupload\jquery.ui.plupload.min.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\moxie.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\moxie.min.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\Moxie.swf" />
+    <Content Include="Backload\Client\moxie\plupload\js\Moxie.xap" />
+    <Content Include="Backload\Client\moxie\plupload\js\plupload.dev.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\plupload.full.min.js" />
+    <Content Include="Backload\Client\moxie\plupload\js\plupload.min.js" />
+    <Content Include="Backload\Client\widen\fineuploader\continue.gif" />
+    <Content Include="Backload\Client\widen\fineuploader\edit.gif" />
+    <Content Include="Backload\Client\widen\fineuploader\fine-uploader-gallery.min.css" />
+    <Content Include="Backload\Client\widen\fineuploader\fine-uploader-new.min.css" />
+    <Content Include="Backload\Client\widen\fineuploader\js\fine-uploader.min.js" />
+    <Content Include="Backload\Client\widen\fineuploader\loading.gif" />
+    <Content Include="Backload\Client\widen\fineuploader\pause.gif" />
+    <Content Include="Backload\Client\widen\fineuploader\placeholders\not_available-generic.png" />
+    <Content Include="Backload\Client\widen\fineuploader\placeholders\waiting-generic.png" />
+    <Content Include="Backload\Client\widen\fineuploader\processing.gif" />
+    <Content Include="Backload\Client\widen\fineuploader\retry.gif" />
+    <Content Include="Backload\Client\widen\fineuploader\templates\fine-uploader-gallery.template.js" />
+    <Content Include="Backload\Client\widen\fineuploader\trash.gif" />
     <Content Include="Backload\Config\_Defaults\Defaults.txt" />
     <Content Include="Backload\ContentTypes\128\Excel.png" />
     <Content Include="Backload\ContentTypes\128\File.png" />
@@ -416,6 +501,8 @@
     <Content Include="Backload\License.txt" />
     <Content Include="Backload\Plugin\Backload.Plugin.Database.dll" />
     <Content Include="Backload\Release.txt" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.og.css" />
@@ -461,7 +548,14 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\toggle-switch.css" />
+    <Content Include="CurrentWorkingVersion.txt" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\_thumbs\AtheneBeneficiaryChange.pdf.png" />
+    <Content Include="Files\_thumbs\b2csigninpolicy.pdf.png" />
+    <Content Include="Files\_thumbs\b2cupin.pdf.png" />
+    <Content Include="Files\_thumbs\capstone.txt.png" />
+    <Content Include="Files\_thumbs\Dan_McManus_Exam_3_7.txt.png" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoon.dev.svg" />
     <Content Include="fonts\icomoon.svg" />
     <Content Include="Global.asax" />
@@ -469,27 +563,11 @@
     <Content Include="fonts\icomoon.eot" />
     <Content Include="fonts\icomoon.ttf" />
     <Content Include="fonts\icomoon.woff" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\demos.custom.database.js" />
     <Content Include="Scripts\demos.support.uuid.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\jquery.blueimp-gallery.min.js" />
-    <Content Include="Scripts\jquery.fileupload-ui.js" />
-    <Content Include="Scripts\jquery.fileupload-validate.js" />
-    <Content Include="Scripts\jquery.fileupload.js" />
-    <Content Include="Scripts\jquery.ui.widget.js" />
-    <Content Include="Scripts\load-image.all.min.js" />
-    <Content Include="Templates\css\bootstrap-theme.css.map" />
-    <Content Include="Templates\css\bootstrap.css.map" />
-    <Content Include="Templates\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Templates\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Templates\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Templates\MediaLoot_License_Agreement.pdf" />
-    <Content Include="Templates\tables\data1.json" />
-    <Content Include="Templates\tables\data2.json" />
     <Content Include="Backload\Logs\log.folder" />
     <Content Include="Backload\Client\blueimp\templates\package.json" />
     <Content Include="Backload\Client\blueimp\loadimage\package.json" />
@@ -500,7 +578,39 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Backload\Web.Backload.config" />
-    <None Include="Scripts\jquery-2.2.2.intellisense.js" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.blueimp-gallery.min.js" />
+    <Content Include="Scripts\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.ui.widget.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\load-image.all.min.js" />
+    <Content Include="Templates\css\bootstrap-theme.css.map" />
+    <Content Include="Templates\css\bootstrap.css.map" />
+    <Content Include="Templates\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Templates\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Templates\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Templates\MediaLoot_License_Agreement.pdf" />
+    <Content Include="Templates\tables\data1.json" />
+    <Content Include="Templates\tables\data2.json" />
+    <Content Include="package.json" />
+    <Content Include="Files\AtheneBeneficiaryChange.pdf" />
+    <Content Include="Files\b2csigninpolicy.pdf" />
+    <Content Include="Files\b2cupin.pdf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Templates\bg\blurred-background-1.jpg" />
     <Content Include="Templates\bg\blurred-background-10.jpg" />
     <Content Include="Templates\bg\blurred-background-2.jpg" />
@@ -541,11 +651,8 @@
     <Content Include="Templates\panels.html" />
     <Content Include="Templates\tables.html" />
     <Content Include="Templates\widgets.html" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.og.js" />
-    <Content Include="Scripts\jquery-2.2.2.js" />
-    <Content Include="Scripts\jquery-2.2.2.min.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -618,14 +725,19 @@
     <Content Include="Views\Contacts\Create.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Calculator\Details.cshtml" />
+    <Content Include="Views\FileHandler\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-2.2.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605020601087_initial.resx">
+      <DependentUpon>201605020601087_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

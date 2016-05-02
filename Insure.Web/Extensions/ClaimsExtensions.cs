@@ -11,7 +11,7 @@ namespace Insure.Web.Extensions
     {
         static string GetUserEmail(this ClaimsIdentity identity)
         {
-            return identity.Claims?.FirstOrDefault(c => c.Type == "WebApplication.Models.RegisterViewModel.Email")?.Value;
+            return identity.Claims?.FirstOrDefault(c => c.Type == "Insure.Web.Models.RegisterViewModel.Email")?.Value;
         }
 
         public static string GetUserEmail(this IIdentity identity)
@@ -22,7 +22,7 @@ namespace Insure.Web.Extensions
 
         static string GetUserNameIdentifier(this ClaimsIdentity identity)
         {
-            return identity.Claims?.FirstOrDefault(c => c.Type == "WebApplication.Models.RegisterViewModel.NameIdentifier")?.Value;
+            return identity.Claims?.FirstOrDefault(c => c.Type == "Insure.Web.Models.RegisterViewModel.NameIdentifier")?.Value;
         }
 
         public static string GetUserNameIdentifier(this IIdentity identity)

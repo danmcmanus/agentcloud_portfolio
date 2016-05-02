@@ -1,7 +1,4 @@
 
-// Fast UUID generator, RFC4122 version 4 compliant.
-// Jeff Ward (jcward.com).
-// Needed in database demo for uuid generation
 var UUID = (function () {
     var self = {};
     var lut = []; for (var i = 0; i < 256; i++) { lut[i] = (i < 16 ? '0' : '') + (i).toString(16); }

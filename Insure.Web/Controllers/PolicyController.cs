@@ -21,7 +21,7 @@ namespace Insure.Web.Controllers
     public class PolicyController : Controller
     {
 
-        private DataContext db = new DataContext();
+        private FilesContext db = new FilesContext();
 
 
         
@@ -71,7 +71,7 @@ namespace Insure.Web.Controllers
         ////Default Index() GET: Policy
         //public ActionResult Index()
         //{
-        //    var policies = db.Policies.Include(p => p.Company).Include(p => p.User);
+        //    var policies = db.Policies.Include(p => p.Company).Include(p => p.AppUser);
             
         //    return View(policies.ToList());
         //}
@@ -95,7 +95,7 @@ namespace Insure.Web.Controllers
         public ActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");  //FirstName => FullName
+            ViewBag.UserId = new SelectList(db.AppUsers, "Id", "FullName");  //FirstName => FullName
             return View();
         }
 
@@ -114,7 +114,7 @@ namespace Insure.Web.Controllers
             }
 
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", policy.UserId);
+            ViewBag.UserId = new SelectList(db.AppUsers, "Id", "FullName", policy.AppUserId);
 
 
 
@@ -134,7 +134,7 @@ namespace Insure.Web.Controllers
                 return HttpNotFound();
             }
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", policy.UserId);
+            ViewBag.UserId = new SelectList(db.AppUsers, "Id", "FullName", policy.AppUserId);
             return View(policy);
         }
 
@@ -152,7 +152,7 @@ namespace Insure.Web.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", policy.CompanyId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", policy.UserId);
+            ViewBag.UserId = new SelectList(db.AppUsers, "Id", "FullName", policy.AppUserId);
             return View(policy);
         }
 

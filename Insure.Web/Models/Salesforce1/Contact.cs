@@ -220,7 +220,7 @@ namespace Insure.Web.Models.Salesforce1
         [StringLength(100)]
         public string Languages__c { get; set; }
 
-        public Insure.Web.Models.User User { get; set; }
+        public Insure.Web.Models.AppUser AppUser { get; set; }
         public Insure.Web.Models.Company Company { get; set; }
 
         public Contact()

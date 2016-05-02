@@ -12,7 +12,7 @@ namespace Insure.Web.Controllers
     using System.IO;
     public class HomeController : Controller
     {
-        private DataContext db = new DataContext();
+        private FilesContext db = new FilesContext();
         public ActionResult Index()
         {
             return View();

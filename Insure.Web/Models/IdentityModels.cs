@@ -1,8 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Backload.Contracts.Services.Database;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace Insure.Web.Models
 {
@@ -10,7 +12,7 @@ namespace Insure.Web.Models
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-        {
+        {            
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
@@ -24,12 +26,6 @@ namespace Insure.Web.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        //public DbSet<Person> People { get; set; }
-        //public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
-        //public DbSet<Policy> Policies { get; set; }
-        //public DbSet<CompanyPolicy> CompanyPolicies { get; set; }
-
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -14,14 +14,14 @@ namespace Insure.Web.Controllers
 {
     public class ContactsController : Controller
     {
-        DataContext db = new DataContext();
+        FilesContext db = new FilesContext();
 
-        public ActionResult Convert(User user)
-        {
-            return View();
-        }
+        //public ActionResult Convert(AppUser AppUser)
+        //{
+        //    return View();
+        //}
         // Note: the SOQL Field list, and Binding Property list have subtle differences as custom properties may be mapped with the JsonProperty attribute to remove __c
-        const string _ContactsPostBinding = "Id,Salutation,FirstName,LastName,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Phone,Email";
+        const string ContactsPostBinding = "Id,Salutation,FirstName,LastName,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Phone,Email";
         // GET: Contacts
         public async Task<ActionResult> Index()
         {
@@ -113,7 +113,7 @@ namespace Insure.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = _ContactsPostBinding)] Contact contact)
+        public async Task<ActionResult> Edit([Bind(Include = ContactsPostBinding)] Contact contact)
         {
             SuccessResponse success = new SuccessResponse();
             try
@@ -136,7 +136,7 @@ namespace Insure.Web.Controllers
             {
                 return Redirect(this.ViewBag.AuthorizationUrl);
             }
-            if (success.Success == "true")
+            if (success.Success == true)
             {
                 return RedirectToAction("Index");
             }
@@ -175,7 +175,7 @@ namespace Insure.Web.Controllers
             {
                 return Redirect(this.ViewBag.AuthorizationUrl);
             }
-            if (selectedContacts.Count() == 0)
+            if (selectedContacts == null)
             {
                 return View();
             }
@@ -227,9 +227,10 @@ namespace Insure.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = _ContactsPostBinding)] Contact contact)
+        public async Task<ActionResult> Create([Bind(Include = ContactsPostBinding)] Contact contact)
         {
-            String id = String.Empty;
+            var id = new SuccessResponse();
+            //string id = String.Empty;
             try
             {
                 id = await SalesforceService.MakeAuthenticatedClientRequestAsync(

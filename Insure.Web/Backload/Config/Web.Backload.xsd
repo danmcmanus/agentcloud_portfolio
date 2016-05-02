@@ -59,7 +59,7 @@
                 <xs:complexType>
                   <xs:attribute name="filesRoot" type="xs:string" default="~/Files" use="optional"><xs:annotation><xs:documentation>Root upload folder. If the value starts with '~/' (e.g. ~/files) the path is relative to the web application root, otherwise set an absolute local path (e.g. d:\files) and also set a the virtual path name in the "virtualDirectory" attribute [Default: "~/Files"]</xs:documentation></xs:annotation></xs:attribute>
                   <xs:attribute name="virtualDirectory" type="xs:string" default="/" use="optional"><xs:annotation><xs:documentation>Name of virtual path in your IIS application to an external storage location (unc or full file system path). If filesRoot is relative to the web application root (starts with '~/', see filesRoot), you do not need to set this value. If filesRoot is an absolute path, you usually set a virtual path in IIS to this external location. In this case, the virtualDirectory attribute must be set to the name of the virtual path and filesRoot to the external path. Example: If the virtual path is z:\files and the name is "files", set filesRoot="z:\files" and virtualDirectory="/files" [Default: "/"]</xs:documentation></xs:annotation></xs:attribute>
-                  <xs:attribute name="usersRoot" type="xs:string" default="Users" use="optional"><xs:annotation><xs:documentation>Special subfolder within the filesRoot to store user related files like photos etc. Set it to usersRoot="" if you do not need this subfolder [Default: ""]</xs:documentation></xs:annotation></xs:attribute>
+                  <xs:attribute name="AppUsersRoot" type="xs:string" default="AppUsers" use="optional"><xs:annotation><xs:documentation>Special subfolder within the filesRoot to store AppUser related files like photos etc. Set it to AppUsersRoot="" if you do not need this subfolder [Default: ""]</xs:documentation></xs:annotation></xs:attribute>
                   <xs:attribute name="objectsRoot" type="xs:string" default="" use="optional"><xs:annotation><xs:documentation>Subfolder within the filesRoot. Set it to objectsRoot="" if you do not need a subfolder [Default: ""]</xs:documentation></xs:annotation></xs:attribute>
                   <xs:attribute name="copiesRoot" type="xs:string" default="" use="optional"><xs:annotation><xs:documentation>Root of a folder where Backload stores a copy of an uploaded file, if set to a none empty string. If the value is empty ("") not copies are stored. If the value starts with '~/' (e.g. ~/copies) the path is relative to the web root. If the value not starts with '~/' and it isn't an absolute local path, the value will be treated as a subfolder to filesRoot ('copies' -> ~/files/copies). Otherwise set an absolute local path (e.g. d:/backup) [Default: ""]</xs:documentation></xs:annotation></xs:attribute>
                   <xs:attribute name="chunkPathPrefix" type="xs:string" default="$$" use="optional"><xs:annotation><xs:documentation>Temporary folder prefix if file chunks are uploaded into the upload folder before they are merged [Default: "$$"].</xs:documentation></xs:annotation></xs:attribute>
@@ -117,8 +117,8 @@
                   <xs:simpleType>
                     <xs:restriction base="xs:string">
                       <xs:enumeration value="centralShared"><xs:annotation><xs:documentation>All files are stored on a central Google Drive accout in the same upload folder. All users have access to all uploaded files.</xs:documentation></xs:annotation></xs:enumeration>
-                      <xs:enumeration value="central"><xs:annotation><xs:documentation>All files are stored on a central Google Drive accout into an user individual folder. User only has access to his uploaded files.</xs:documentation></xs:annotation></xs:enumeration>
-                      <xs:enumeration value="user"><xs:annotation><xs:documentation>Files are stored in the users Google Drive account. The user must have a Google Drive account.</xs:documentation></xs:annotation></xs:enumeration>
+                      <xs:enumeration value="central"><xs:annotation><xs:documentation>All files are stored on a central Google Drive accout into an AppUser individual folder. AppUser only has access to his uploaded files.</xs:documentation></xs:annotation></xs:enumeration>
+                      <xs:enumeration value="user"><xs:annotation><xs:documentation>Files are stored in the AppUsers Google Drive account. The AppUser must have a Google Drive account.</xs:documentation></xs:annotation></xs:enumeration>
                     </xs:restriction>
                   </xs:simpleType>
                 </xs:attribute>
@@ -244,7 +244,7 @@
                 </xs:complexType>
               </xs:element>
             </xs:all>
-            <xs:attribute name="forceObjectContext" type="xs:boolean" default="false" use="optional"><xs:annotation><xs:documentation>A request must always include an none empty objectContext parameter (query or form) to be valid. If you use "objectContext" to store/retirieve user related files, a malicious request could reveal some other users files, if forceObjectContext is false [Default:"false"]</xs:documentation></xs:annotation></xs:attribute>
+            <xs:attribute name="forceObjectContext" type="xs:boolean" default="false" use="optional"><xs:annotation><xs:documentation>A request must always include an none empty objectContext parameter (query or form) to be valid. If you use "objectContext" to store/retirieve user related files, a malicious request could reveal some other AppUsers files, if forceObjectContext is false [Default:"false"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="allowAnonymous" type="xs:boolean" default="true" use="optional"><xs:annotation><xs:documentation>True: Anyone is allowed, false: The user must be authenticated [Default: "true"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="allowedDownloadRoles" type="xs:string" default="*" use="optional"><xs:annotation><xs:documentation>By default there are no restrictions on who can download files by a GET request. You can change this by adding a comma separated list of roles [Default: "*"]</xs:documentation></xs:annotation></xs:attribute>
             <xs:attribute name="allowedUploadRoles" type="xs:string" default="*" use="optional"><xs:annotation><xs:documentation>By default there are no restrictions on who can upload files whithin a POST/PUT request. You can change this by adding a comma separated list of roles [Default: "*"]</xs:documentation></xs:annotation></xs:attribute>
@@ -315,7 +315,7 @@
           </xs:annotation>
           <xs:complexType>
             <xs:attribute name="licensee" type="xs:string" default="" use="optional"><xs:annotation><xs:documentation>Provided licensee value (usually email adress). Obligatory field in the paid editions.</xs:documentation></xs:annotation></xs:attribute>
-            <xs:attribute name="licenseKey" type="xs:string" default="Users" use="optional"><xs:annotation><xs:documentation>Provided license key. Obligatory field in the paid editions.</xs:documentation></xs:annotation></xs:attribute>
+            <xs:attribute name="licenseKey" type="xs:string" default="AppUsers" use="optional"><xs:annotation><xs:documentation>Provided license key. Obligatory field in the paid editions.</xs:documentation></xs:annotation></xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:all>

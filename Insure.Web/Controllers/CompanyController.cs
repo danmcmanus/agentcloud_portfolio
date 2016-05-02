@@ -12,7 +12,7 @@ namespace Insure.Web.Controllers
 {
     public class CompanyController : Controller
     {
-        private DataContext db = new DataContext();
+        private FilesContext db = new FilesContext();
 
         // GET: Company
         public ActionResult Index()

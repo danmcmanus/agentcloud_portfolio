@@ -16,7 +16,7 @@ namespace Insure.Web.Controllers
 {
     public class UserController : Controller
     {
-        private DataContext db = new DataContext();
+        private FilesContext db = new FilesContext();
        
         public ActionResult Index(string SortOrder, string currentFilter, string searchString, int? page)
         {
@@ -35,7 +35,7 @@ namespace Insure.Web.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var users = from u in db.Users
+            var users = from u in db.AppUsers
                         select u;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -66,17 +66,17 @@ namespace Insure.Web.Controllers
         //Default Index()
         //public ActionResult Index()
         //{
-        //    return View(db.Users.ToList());
+        //    return View(db.AppUsers.ToList());
         //}
 
-        // GET: User/Details/5
+        // GET: AppUser/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            AppUser user = db.AppUsers.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -84,26 +84,26 @@ namespace Insure.Web.Controllers
             return View(user);
         }
 
-        // GET: User/Create
+        // GET: AppUser/Create
         public ActionResult Create()
         {
             
             return View();
         }
 
-        // POST: User/Create
+        // POST: AppUser/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age")] User user)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age")] AppUser user)
         {
             try
             {
 
                 if (ModelState.IsValid)
                 {
-                    db.Users.Add(user);
+                    db.AppUsers.Add(user);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -116,14 +116,14 @@ namespace Insure.Web.Controllers
             }
             return View(user);
         }
-        // GET: User/Edit/5
+        // GET: AppUser/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            AppUser user = db.AppUsers.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -139,7 +139,7 @@ namespace Insure.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var userToUpdate = db.Users.Find(id);
+            var userToUpdate = db.AppUsers.Find(id);
             if (TryUpdateModel(userToUpdate, "",
                new string[] { "FirstName","LastName","Age"  }))
             {
@@ -158,12 +158,12 @@ namespace Insure.Web.Controllers
             return View(userToUpdate);
         }
 
-        // POST: User/Edit/5
+        // POST: AppUser/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Age,PolicyId")] User user)
+        //public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Age,PolicyId")] AppUser AppUser)
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -174,14 +174,14 @@ namespace Insure.Web.Controllers
         //    return View(user);
         //}
 
-        // GET: User/Delete/5
+        // GET: AppUser/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            AppUser user = db.AppUsers.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -189,13 +189,13 @@ namespace Insure.Web.Controllers
             return View(user);
         }
 
-        // POST: User/Delete/5
+        // POST: AppUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            AppUser user = db.AppUsers.Find(id);
+            db.AppUsers.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -203,7 +203,7 @@ namespace Insure.Web.Controllers
         [HttpPost]
         public ActionResult Convert(FormCollection collection)
         {
-            PdfHelper.ConversionUrl = "http://localhost:22032/User";
+            PdfHelper.ConversionUrl = "http://localhost:22032/AppUser";
             var conversion = PdfHelper.Convert(collection);
             return conversion;
         }

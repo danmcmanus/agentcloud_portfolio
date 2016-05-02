@@ -377,7 +377,6 @@ ul.nav li.dropdown.open ul.dropdown-menu li a {
 }
 
 .btn {
-	font-weight: 1em;
 	font-weight: bold;
 	background-image: none;
 	color: #777;
@@ -581,7 +580,7 @@ ul.nav li.dropdown.open ul.dropdown-menu li a {
 
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	box-shadow: inset none;
+
 
 	outline: none;
 }
@@ -640,7 +639,7 @@ ul.dropdown-menu {
 
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	box-shadow: inset none;
+
 
 	outline: none;
 }
@@ -651,7 +650,7 @@ ul.dropdown-menu {
 
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	box-shadow: inset none;
+
 
 	outline: none;
 }
@@ -662,7 +661,7 @@ ul.dropdown-menu {
 
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	box-shadow: inset none;
+
 
 	outline: none;
 }
@@ -673,7 +672,7 @@ ul.dropdown-menu {
 
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	box-shadow: inset none;
+	
 
 	outline: none;
 }
@@ -684,7 +683,7 @@ ul.dropdown-menu {
 
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	box-shadow: inset none;
+
 
 	outline: none;
 }

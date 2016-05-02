@@ -35,11 +35,11 @@ namespace Insure.Web.Models
         public double? CoPay { get; set; }
         [DisplayName("Select Company")]                               
         public int CompanyId { get; set; }
-        [DisplayName("Select User")]
-        public int UserId { get; set; }
+        [DisplayName("Select AppUser")]
+        public int AppUserId { get; set; }
 
         public virtual Company Company { get; set; }
-        public virtual User User { get; set; }
+        public virtual AppUser AppUser { get; set; }
 
     }
 }

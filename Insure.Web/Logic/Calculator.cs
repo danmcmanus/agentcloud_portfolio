@@ -16,7 +16,7 @@ namespace Insure.Web.Logic
             set { totalCost = value; }
         }
 
-        DataContext db = new DataContext();
+        FilesContext db = new FilesContext();
         
         public double? calculateCost()
         {
